@@ -10,598 +10,772 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-:root{
- --dark:#111111;
- --dark2:#1E1E1E;
- --surface:#252525;
- --crimson:#DC143C;
- --crimson-dark:#A30F2D;
- --text:#F5F5F5;
- --muted:#B5B5B5;
- --border:#383838;
- --green:#238b50;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text)}
-a{text-decoration:none;color:inherit}
-button,input,textarea{font:inherit}
-.container{width:min(1150px,92%);margin:auto}
-
-.topbar{background:#090909;color:#eee;padding:10px 0;font-size:13px;border-bottom:1px solid var(--border)}
-.topbar .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-header{background:#111;position:sticky;top:0;z-index:10;box-shadow:0 5px 25px #0009;border-bottom:1px solid var(--border)}
-.nav{height:78px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:12px;font:800 25px 'Playfair Display'}
-.brand img{height:52px;width:52px;object-fit:contain;border-radius:50%;background:white}
-.links{display:flex;align-items:center;gap:25px;font-size:14px;font-weight:700}
-.links a:hover{color:var(--crimson)}
-.nav-btn{display:none;background:none;border:0;color:white;font-size:25px}
-
-.crimson-btn{background:var(--crimson);color:white;padding:13px 20px;border-radius:30px;font-weight:800;display:inline-block;border:0;cursor:pointer;transition:.25s}
-.crimson-btn:hover{background:var(--crimson-dark);transform:translateY(-2px);box-shadow:0 5px 18px #dc143c55}
-
-.hero{background:radial-gradient(circle at 80% 20%,#48101d,#211014 45%,#090909);color:white}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center;padding:85px 0}
-.kicker{color:#ff526f;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
-h1,h2{font-family:'Playfair Display',serif}
-.hero h1{font-size:clamp(42px,6vw,72px);line-height:1.08;margin:20px 0}
-.hero p{color:#dedede;line-height:1.8;max-width:560px}
-.hero-img{text-align:center}
-.hero-img img{width:min(320px,80%);border-radius:50%;background:white;box-shadow:0 0 0 10px #dc143c22,0 20px 60px #000}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.outline-btn{border:1px solid #eee;padding:12px 19px;border-radius:30px;font-weight:700}
-.outline-btn:hover{border-color:var(--crimson);color:#ff526f}
-
-section{padding:70px 0}
-.heading{text-align:center;margin-bottom:32px}
-.heading h2{font-size:clamp(30px,4vw,43px);margin:10px 0;color:white}
-.heading p{color:var(--muted);font-size:14px}
-
-.menu-section{background:#151515}
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:25px}
-.search{flex:1;min-width:220px;padding:13px 16px;border:1px solid var(--border);border-radius:12px;background:#222;color:white;outline:none}
-.search:focus{border-color:var(--crimson)}
-.filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter{padding:9px 14px;border-radius:30px;border:1px solid var(--border);background:#222;color:#eee;cursor:pointer;font-weight:700;font-size:12px}
-.filter.active,.filter:hover{background:var(--crimson);border-color:var(--crimson);color:white}
-.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.menu-item{background:#202020;border:1px solid #383838;border-radius:13px;padding:17px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 4px 15px #0004;transition:.2s}
-.menu-item:hover{border-color:var(--crimson);transform:translateY(-3px)}
-.menu-item h3{font-size:15px;margin-bottom:5px}
-.menu-item small{color:var(--muted)}
-.price{font-weight:800;color:#ff526f;white-space:nowrap}
-.add-btn{display:block;margin-top:9px;background:#42121e;border:1px solid #702035;padding:7px 11px;border-radius:7px;color:#ff8094;font-weight:800;font-size:12px;cursor:pointer}
-.add-btn:hover{background:var(--crimson);color:white}
-.note{margin-top:22px;padding:15px;background:#29141a;border-left:4px solid var(--crimson);border-radius:8px;font-size:13px;color:#eee}
-
-.dark-section{background:#111;color:white;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.dark-section .heading p{color:var(--muted)}
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.gallery img{width:100%;border-radius:12px;border:2px solid #7d1b32}
-.interior-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.interior-grid img{width:100%;height:240px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
-
-.contact{background:#181818}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
-.contact-card,.form-card{background:#222;padding:28px;border-radius:17px;border:1px solid var(--border)}
-.contact-card h3,.form-card h3{font:700 25px 'Playfair Display';margin-bottom:20px}
-.contact-line{display:flex;gap:13px;margin:23px 0;align-items:flex-start;line-height:1.6}
-.contact-line i{color:#ff526f;width:20px;margin-top:3px}
-.form-card label{display:block;font-size:13px;font-weight:800;margin:13px 0 6px}
-.form-card input,.form-card textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#151515;color:white;outline:none}
-.form-card input:focus,.form-card textarea:focus{border-color:var(--crimson)}
-.form-card textarea{min-height:90px;resize:vertical}
-.send-btn{width:100%;padding:14px;background:var(--crimson);color:white;border:0;border-radius:9px;font-weight:800;margin-top:18px;cursor:pointer}
-.send-btn:hover{background:var(--crimson-dark)}
-
-footer{background:#090909;color:#ddd;padding:30px 0;text-align:center;font-size:13px;border-top:1px solid var(--border)}
-footer img{width:45px;height:45px;object-fit:contain;border-radius:50%;background:white;vertical-align:middle;margin-right:8px}
-
-.cart-button{position:fixed;right:20px;bottom:20px;background:var(--crimson);color:white;border:0;padding:15px 20px;border-radius:35px;box-shadow:0 5px 25px #0008;z-index:15;cursor:pointer;font-weight:800}
-.cart-button span{background:white;color:var(--crimson);border-radius:50%;padding:3px 8px;margin-left:5px}
-.cart-panel{display:none;position:fixed;right:20px;bottom:80px;width:min(370px,calc(100% - 40px));max-height:65vh;overflow:auto;background:#202020;color:white;border:1px solid var(--border);border-radius:15px;padding:20px;box-shadow:0 10px 40px #0009;z-index:16}
-.cart-panel.open{display:block}
-.cart-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
-.cart-row button{border:0;background:none;color:#ff526f;cursor:pointer}
-.cart-total{text-align:right;font-weight:800;margin-top:15px}
-.empty{text-align:center;padding:35px;color:var(--muted);grid-column:1/-1}
-
-@media(max-width:800px){
- .hero-grid{grid-template-columns:1fr;text-align:center;padding:55px 0}
- .hero p{margin:auto}
- .hero-img{order:-1}
- .menu-grid{grid-template-columns:repeat(2,1fr)}
- .contact-grid{grid-template-columns:1fr}
- .interior-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
- .nav-btn{display:block}
- .links{display:none;position:absolute;top:78px;left:0;right:0;background:#111;padding:20px 5%;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--border)}
- .links.show{display:flex}
- .menu-grid,.gallery,.interior-grid{grid-template-columns:1fr}
- .interior-grid img{height:230px}
- section{padding:50px 0}
- .brand{font-size:21px}
+:root {
+  --dark:#111111;
+  --dark2:#1E1E1E;
+  --surface:#252525;
+  --crimson:#DC143C;
+  --crimson-dark:#A30F2D;
+  --text:#F5F5F5;
+  --muted:#B5B5B5;
+  --border:#383838;
 }
 
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--dark); color:var(--text); }
+a { text-decoration:none; color:inherit; }
+button,input,textarea { font:inherit; }
+.container { width:min(1150px,92%); margin:auto; }
+
+.topbar {
+  background:#090909; color:#eee; padding:10px 0;
+  font-size:13px; border-bottom:1px solid var(--border);
+}
+.topbar .container {
+  display:flex; justify-content:space-between;
+  gap:12px; flex-wrap:wrap;
+}
+
+header {
+  background:#111; position:sticky; top:0; z-index:10;
+  box-shadow:0 5px 25px #0009; border-bottom:1px solid var(--border);
+}
+.nav {
+  height:78px; display:flex; align-items:center;
+  justify-content:space-between;
+}
+.brand {
+  display:flex; align-items:center; gap:12px;
+  font:800 25px 'Playfair Display';
+}
+.brand img {
+  height:52px; width:52px; object-fit:contain;
+  border-radius:50%; background:white;
+}
+.links {
+  display:flex; align-items:center; gap:25px;
+  font-size:14px; font-weight:700;
+}
+.links a:hover { color:var(--crimson); }
+.nav-btn {
+  display:none; background:none; border:0;
+  color:white; font-size:25px;
+}
+
+.crimson-btn {
+  background:var(--crimson); color:white; padding:13px 20px;
+  border-radius:30px; font-weight:800; display:inline-block;
+  border:0; cursor:pointer; transition:.25s;
+}
+.crimson-btn:hover {
+  background:var(--crimson-dark); transform:translateY(-2px);
+  box-shadow:0 5px 18px #dc143c55;
+}
+
+.hero {
+  background:radial-gradient(circle at 80% 20%,#48101d,#211014 45%,#090909);
+  color:white; overflow:hidden;
+}
+.hero-grid {
+  display:grid; grid-template-columns:1.1fr .9fr;
+  gap:35px; align-items:center; padding:85px 0;
+}
+.kicker {
+  color:#ff526f; font-size:12px; font-weight:800;
+  letter-spacing:3px; text-transform:uppercase;
+}
+h1,h2 { font-family:'Playfair Display',serif; }
+.hero h1 {
+  font-size:clamp(42px,6vw,72px);
+  line-height:1.08; margin:20px 0;
+}
+.hero p { color:#dedede; line-height:1.8; max-width:560px; }
+
+/* Rectangular overlapping hero image */
 .hero-img {
-    position: relative;
-    text-align: center;
-    padding: 25px;
-    isolation: isolate;
+  position:relative;
+  text-align:center;
+  padding:25px;
+  isolation:isolate;
 }
-
 .hero-img::before {
-    content: "";
-    position: absolute;
-    width: 95%;
-    height: 95%;
-    top: 5px;
-    left: 5%;
-    background: #DC143C;
-    border-radius: 18px;
-    transform: rotate(5deg);
-    z-index: -1;
-    opacity: 0.85;
+  content:"";
+  position:absolute;
+  width:95%;
+  height:95%;
+  top:5px;
+  left:5%;
+  background:#DC143C;
+  border-radius:18px;
+  transform:rotate(5deg);
+  z-index:-1;
+  opacity:.85;
 }
-
 .hero-img img {
-    position: relative;
-    display: block;
-    width: 100%;
-    max-width: 460px;
-    height: 330px;
-    object-fit: cover;
-    border-radius: 15px;
-    border: 5px solid #3b111b;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    margin: auto;
+  position:relative;
+  display:block;
+  width:100%;
+  max-width:460px;
+  height:330px;
+  object-fit:cover;
+  border-radius:15px;
+  border:5px solid #3b111b;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  margin:auto;
 }
 
+.actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+.outline-btn {
+  border:1px solid #eee; padding:12px 19px;
+  border-radius:30px; font-weight:700;
+}
+.outline-btn:hover { border-color:var(--crimson); color:#ff526f; }
+
+section { padding:70px 0; }
+.heading { text-align:center; margin-bottom:32px; }
+.heading h2 {
+  font-size:clamp(30px,4vw,43px);
+  margin:10px 0; color:white;
+}
+.heading p { color:var(--muted); font-size:14px; }
+
+.menu-section { background:#151515; }
+.toolbar {
+  display:flex; justify-content:space-between;
+  align-items:center; gap:15px; flex-wrap:wrap; margin-bottom:25px;
+}
+.search {
+  flex:1; min-width:220px; padding:13px 16px;
+  border:1px solid var(--border); border-radius:12px;
+  background:#222; color:white; outline:none;
+}
+.search:focus { border-color:var(--crimson); }
+.filters { display:flex; gap:8px; flex-wrap:wrap; }
+.filter {
+  padding:9px 14px; border-radius:30px;
+  border:1px solid var(--border); background:#222;
+  color:#eee; cursor:pointer; font-weight:700; font-size:12px;
+}
+.filter.active,.filter:hover {
+  background:var(--crimson); border-color:var(--crimson); color:white;
+}
+.menu-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+}
+.menu-item {
+  background:#202020; border:1px solid #383838;
+  border-radius:13px; padding:17px; display:flex;
+  align-items:center; justify-content:space-between;
+  gap:10px; box-shadow:0 4px 15px #0004; transition:.2s;
+}
+.menu-item:hover { border-color:var(--crimson); transform:translateY(-3px); }
+.menu-item h3 { font-size:15px; margin-bottom:5px; }
+.menu-item small { color:var(--muted); }
+.price { font-weight:800; color:#ff526f; white-space:nowrap; }
+.add-btn {
+  display:block; margin-top:9px; background:#42121e;
+  border:1px solid #702035; padding:7px 11px;
+  border-radius:7px; color:#ff8094; font-weight:800;
+  font-size:12px; cursor:pointer;
+}
+.add-btn:hover { background:var(--crimson); color:white; }
+.note {
+  margin-top:22px; padding:15px; background:#29141a;
+  border-left:4px solid var(--crimson);
+  border-radius:8px; font-size:13px; color:#eee;
+}
+
+/* Menu image section */
+.dark-section {
+  background:#111; color:white;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.dark-section .heading p { color:var(--muted); }
+.gallery {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
+}
+.gallery img {
+  width:100%; border-radius:12px; border:2px solid #7d1b32;
+}
+.interior-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:15px;
+}
+.interior-grid img {
+  width:100%; height:240px; object-fit:cover;
+  border-radius:12px; border:1px solid var(--border);
+}
+
+/* Contact */
+.contact { background:#181818; }
+.contact-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:25px;
+}
+.contact-card,.form-card {
+  background:#222; padding:28px;
+  border-radius:17px; border:1px solid var(--border);
+}
+.contact-card h3,.form-card h3 {
+  font:700 25px 'Playfair Display'; margin-bottom:20px;
+}
+.contact-line {
+  display:flex; gap:13px; margin:23px 0;
+  align-items:flex-start; line-height:1.6;
+}
+.contact-line i { color:#ff526f; width:20px; margin-top:3px; }
+.form-card label {
+  display:block; font-size:13px; font-weight:800; margin:13px 0 6px;
+}
+.form-card input,.form-card textarea {
+  width:100%; padding:12px; border:1px solid var(--border);
+  border-radius:8px; background:#151515; color:white; outline:none;
+}
+.form-card input:focus,.form-card textarea:focus { border-color:var(--crimson); }
+.form-card textarea { min-height:90px; resize:vertical; }
+.send-btn {
+  width:100%; padding:14px; background:var(--crimson);
+  color:white; border:0; border-radius:9px;
+  font-weight:800; margin-top:18px; cursor:pointer;
+}
+.send-btn:hover { background:var(--crimson-dark); }
+
+footer {
+  background:#090909; color:#ddd; padding:30px 0;
+  text-align:center; font-size:13px; border-top:1px solid var(--border);
+}
+footer img {
+  width:45px; height:45px; object-fit:contain;
+  border-radius:50%; background:white;
+  vertical-align:middle; margin-right:8px;
+}
+
+/* Cart */
+.cart-button {
+  position:fixed; right:20px; bottom:20px;
+  background:var(--crimson); color:white; border:0;
+  padding:15px 20px; border-radius:35px;
+  box-shadow:0 5px 25px #0008; z-index:15;
+  cursor:pointer; font-weight:800;
+}
+.cart-button span {
+  background:white; color:var(--crimson);
+  border-radius:50%; padding:3px 8px; margin-left:5px;
+}
+.cart-panel {
+  display:none; position:fixed; right:20px; bottom:80px;
+  width:min(370px,calc(100% - 40px)); max-height:65vh;
+  overflow:auto; background:#202020; color:white;
+  border:1px solid var(--border); border-radius:15px;
+  padding:20px; box-shadow:0 10px 40px #0009; z-index:16;
+}
+.cart-panel.open { display:block; }
+.cart-row {
+  display:flex; justify-content:space-between; gap:10px;
+  padding:10px 0; border-bottom:1px solid var(--border);
+  font-size:14px;
+}
+.cart-row button { border:0; background:none; color:#ff526f; cursor:pointer; }
+.cart-total { text-align:right; font-weight:800; margin-top:15px; }
+.empty {
+  text-align:center; padding:35px; color:var(--muted); grid-column:1/-1;
+}
+.checkout-link {
+  display:block; width:100%; text-align:center;
+  margin-top:18px; padding:14px;
+  background:var(--crimson); color:white;
+  border-radius:9px; font-weight:800;
+}
+.checkout-link:hover { background:var(--crimson-dark); }
+
+@media(max-width:800px) {
+  .hero-grid {
+    grid-template-columns:1fr; text-align:center; padding:55px 0;
+  }
+  .hero p { margin:auto; }
+  .hero-img { order:-1; }
+  .hero-img img { height:300px; }
+  .menu-grid { grid-template-columns:repeat(2,1fr); }
+  .contact-grid { grid-template-columns:1fr; }
+  .interior-grid { grid-template-columns:1fr 1fr; }
+}
 @media(max-width:600px) {
-    .hero-img img {
-        height: 250px;
-    }
+  .nav-btn { display:block; }
+  .links {
+    display:none; position:absolute; top:78px; left:0; right:0;
+    background:#111; padding:20px 5%; flex-direction:column;
+    align-items:flex-start; border-bottom:1px solid var(--border);
+  }
+  .links.show { display:flex; }
+  .menu-grid,.gallery,.interior-grid { grid-template-columns:1fr; }
+  .interior-grid img { height:230px; }
+  section { padding:50px 0; }
+  .brand { font-size:21px; }
+  .hero-img img { height:250px; }
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
- <div class="container">
-  <span><i class="fa-solid fa-location-dot"></i> Baskhari, Ambedkar Nagar</span>
-  <a href="tel:08187926910"><i class="fa-solid fa-phone"></i> 08187926910</a>
- </div>
+  <div class="container">
+    <span><i class="fa-solid fa-location-dot"></i> Baskhari, Ambedkar Nagar</span>
+    <a href="tel:08187926910"><i class="fa-solid fa-phone"></i> 08187926910</a>
+  </div>
 </div>
 
 <header>
- <div class="container nav">
-  <a href="#home" class="brand">
-   <img src="https://www.image2url.com/r2/default/images/1795286895101-9b926e31-19e5-4102-95fd-ada0552012e8.jpeg" alt="Hangout Cafe">
-   <span>Hangout Cafe</span>
-  </a>
-  <button class="nav-btn" id="navToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
-  <nav class="links" id="navLinks">
-   <a href="#home">Home</a>
-   <a href="#menu">Menu</a>
-   <a href="#gallery">Gallery</a>
-   <a href="#contact">Contact</a>
-   <a href="#menu" class="crimson-btn">Order Now</a>
-  </nav>
- </div>
+  <div class="container nav">
+    <a href="#home" class="brand">
+      <img src="https://www.image2url.com/r2/default/images/1795286895101-9b926e31-19e5-4102-95fd-ada0552012e8.jpeg" alt="Hangout Cafe">
+      <span>Hangout Cafe</span>
+    </a>
+
+    <button class="nav-btn" id="navToggle" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="https://hungrykart.in/" target="_blank" rel="noopener noreferrer" class="crimson-btn">Order Online</a>
+    </nav>
+  </div>
 </header>
 
 <section class="hero" id="home">
- <div class="container hero-grid">
-  <div>
-   <div class="kicker">Good food. Good mood.</div>
-   <h1>Welcome to<br><span style="color:#ff526f">Hangout Cafe</span></h1>
-   <p>From crispy dosa and delicious pizza to burgers, shakes, pastries and cakes — your favourite hangout spot for tasty food and good times!</p>
-   <div class="actions">
-    <a href="#menu" class="crimson-btn">Explore Menu <i class="fa-solid fa-arrow-right"></i></a>
-    <a href="tel:08187926910" class="outline-btn"><i class="fa-solid fa-phone"></i> Call Us</a>
-   </div>
+  <div class="container hero-grid">
+    <div>
+      <div class="kicker">Good food. Good mood.</div>
+      <h1>Welcome to<br><span style="color:#ff526f">Hangout Cafe</span></h1>
+      <p>From crispy dosa and delicious pizza to burgers, shakes, pastries and cakes — your favourite hangout spot for tasty food and good times!</p>
+
+      <div class="actions">
+        <a href="#menu" class="crimson-btn">Explore Menu <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="https://hungrykart.in/" target="_blank" rel="noopener noreferrer" class="outline-btn">
+          <i class="fa-solid fa-bag-shopping"></i> Order Online
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-img">
+      <img src="https://www.image2url.com/r2/default/images/1795289461785-39446c02-f952-423e-9600-a9163e44406f.jpeg" alt="Hangout Cafe">
+    </div>
   </div>
-  
-<div class="hero-img">
-    <img
-        src="https://www.image2url.com/r2/default/images/1795289461785-39446c02-f952-423e-9600-a9163e44406f.jpeg"
-       src="https://www.image2url.com/r2/default/images/1795323059088-801c565a-0101-4cc0-a2c5-7b063772e93c.jpg" 
-        alt="Hangout Cafe">
-</div>
- </div>
 </section>
 
 <section class="menu-section" id="menu">
- <div class="container">
-  <div class="heading">
-   <div class="kicker">Freshly served favourites</div>
-   <h2>Explore Our Menu</h2>
-   <p>Find your favourite food and add it to your order.</p>
+  <div class="container">
+    <div class="heading">
+      <div class="kicker">Freshly served favourites</div>
+      <h2>Explore Our Menu</h2>
+      <p>Find your favourite food and add it to your order.</p>
+    </div>
+
+    <div class="toolbar">
+      <input class="search" id="search" placeholder="Search for dosa, pizza, burger...">
+      <div class="filters" id="filters"></div>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+
+    <div class="note">
+      <strong>Ready to order?</strong> Add items to your cart, then continue to HungryKart for online ordering.
+      <a href="https://hungrykart.in/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;font-weight:800">
+        Open HungryKart
+      </a>
+    </div>
   </div>
-  <div class="toolbar">
-   <input class="search" id="search" placeholder="Search for dosa, pizza, burger...">
-   <div class="filters" id="filters"></div>
-  </div>
-  <div class="menu-grid" id="menuGrid"></div>
-  <div class="note"><strong>Note:</strong> Please confirm availability and final order details with the cafe.</div>
- </div>
 </section>
 
 <section class="dark-section">
- <div class="container">
-  <div class="heading">
-   <div class="kicker">Something sweet</div>
-   <h2>Pastries & Cakes</h2>
-   <p>Sweet treats for every celebration.</p>
+  <div class="container">
+    <div class="heading">
+      <div class="kicker">Something sweet</div>
+      <h2>Pastries & Cakes</h2>
+      <p>Sweet treats for every celebration.</p>
+    </div>
+
+    <div class="gallery">
+      <img src="https://www.image2url.com/r2/default/images/1795323491052-d285c8c3-0e41-4abf-ba3b-5bb8fc20bcc8.jpg" alt="Hangout Cafe pastry and cake menu">
+      <img src="https://www.image2url.com/r2/default/images/1795323059088-801c565a-0101-4cc0-a2c5-7b063772e93c.jpg" alt="Hangout Cafe menu">
+    </div>
   </div>
-  <div class="gallery">
-   <img src="https://www.image2url.com/r2/default/images/1795323491052-d285c8c3-0e41-4abf-ba3b-5bb8fc20bcc8.jpg" alt="Hangout Cafe pastry and cake menu">
-   <img src="https://www.image2url.com/r2/default/images/1795323059088-801c565a-0101-4cc0-a2c5-7b063772e93c.jpg" alt="Hangout Cafe menu">
-  </div>
- </div>
 </section>
 
 <section id="gallery">
- <div class="container">
-  <div class="heading">
-   <div class="kicker">Take a look inside</div>
-   <h2>Our Cafe</h2>
-   <p>A welcoming space to enjoy your favourite food.</p>
+  <div class="container">
+    <div class="heading">
+      <div class="kicker">Take a look inside</div>
+      <h2>Our Cafe</h2>
+      <p>A welcoming space to enjoy your favourite food.</p>
+    </div>
+
+    <div class="interior-grid">
+      <img src="https://www.image2url.com/r2/default/images/1795286451786-92b4a580-b750-4417-ad22-ca38c096ce46.jpeg" alt="Hangout Cafe interior">
+      <img src="https://www.image2url.com/r2/default/images/1795286446770-40bac6fc-cf35-4ec8-aef6-221097bbc586.jpeg" alt="Hangout Cafe interior">
+      <img src="https://www.image2url.com/r2/default/images/1795286949277-7c82c8e9-21b2-4b54-aaf4-a3eb198fbfdf.jpeg" alt="Hangout Cafe interior">
+    </div>
   </div>
-  <div class="interior-grid">
-   <img src="https://www.image2url.com/r2/default/images/1795286451786-92b4a580-b750-4417-ad22-ca38c096ce46.jpeg" alt="Hangout Cafe interior">
-   <img src="https://www.image2url.com/r2/default/images/1795286446770-40bac6fc-cf35-4ec8-aef6-221097bbc586.jpeg" alt="Hangout Cafe interior">
-   <img src="https://www.image2url.com/r2/default/images/1795286949277-7c82c8e9-21b2-4b54-aaf4-a3eb198fbfdf.jpeg" alt="Hangout Cafe interior">
-  </div>
- </div>
 </section>
 
 <section class="contact" id="contact">
- <div class="container">
-  <div class="heading">
-   <div class="kicker">Come say hello</div>
-   <h2>Visit Hangout Cafe</h2>
-   <p>For takeaway, cake orders or any enquiry, get in touch.</p>
-  </div>
-  <div class="contact-grid">
-   <div class="contact-card">
-    <h3>Find Us Here</h3>
-    <div class="contact-line">
-     <i class="fa-solid fa-location-dot"></i>
-     <div><strong>Address</strong><br>Akbarpur Road, Baskhari, Ambedkar Nagar, in front of Police Station, Uttar Pradesh – 224129</div>
+  <div class="container">
+    <div class="heading">
+      <div class="kicker">Come say hello</div>
+      <h2>Visit Hangout Cafe</h2>
+      <p>For takeaway, cake orders or any enquiry, get in touch.</p>
     </div>
-    <div class="contact-line">
-     <i class="fa-solid fa-phone"></i>
-     <div><strong>Phone</strong><br><a href="tel:08187926910">08187926910</a></div>
-    </div>
-    <div class="contact-line">
-     <i class="fa-brands fa-whatsapp"></i>
-     <div><strong>WhatsApp</strong><br><a href="https://wa.me/918187926910" target="_blank">Chat with Hangout Cafe</a></div>
-    </div>
-    <div class="contact-line">
-     <i class="fa-solid fa-clock"></i>
-     <div><strong>Opening Hours</strong><br>Call us to confirm today's timings.</div>
-    </div>
-    <a class="crimson-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir//Hangout+Caf%C3%A9,+Akbarpur+road,+Baskhari,+Uttar+Pradesh+224129/@26.4545191,82.7670371,20.5z/data=!4m16!1m7!3m6!1s0x3990e52ab12f4f43:0x87bdc0d951baa591!2sHangout+Caf%C3%A9!8m2!3d26.4546604!4d82.7670583!16s%2Fg%2F11s9dm2qhq!4m7!1m0!1m5!1m1!1s0x3990e52ab12f4f43:0x87bdc0d951baa591!2m2!1d82.7670527!2d26.4546439?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D">Find Directions</a>
-   </div>
 
-   <form class="form-card" id="enquiryForm">
-    <h3>Send an Enquiry</h3>
-    <label for="customer">Your Name</label>
-    <input id="customer" required placeholder="Enter your name">
-    <label for="mobile">Phone Number</label>
-    <input id="mobile" required type="tel" placeholder="Enter your number">
-    <label for="details">Your Order / Enquiry</label>
-    <textarea id="details" required placeholder="What would you like to order?"></textarea>
-    <button type="submit" class="send-btn"><i class="fa-brands fa-whatsapp"></i> Send on WhatsApp</button>
-   </form>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Find Us Here</h3>
+
+        <div class="contact-line">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><strong>Address</strong><br>Akbarpur Road, Baskhari, Ambedkar Nagar, in front of Police Station, Uttar Pradesh – 224129</div>
+        </div>
+
+        <div class="contact-line">
+          <i class="fa-solid fa-phone"></i>
+          <div><strong>Phone</strong><br><a href="tel:08187926910">08187926910</a></div>
+        </div>
+
+        <div class="contact-line">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div><strong>WhatsApp</strong><br><a href="https://wa.me/918187926910" target="_blank" rel="noopener noreferrer">Chat with Hangout Cafe</a></div>
+        </div>
+
+        <div class="contact-line">
+          <i class="fa-solid fa-clock"></i>
+          <div><strong>Opening Hours</strong><br>Call us to confirm today's timings.</div>
+        </div>
+
+        <a class="crimson-btn" target="_blank" rel="noopener noreferrer"
+          href="https://www.google.com/maps/dir//Hangout+Caf%C3%A9,+Akbarpur+road,+Baskhari,+Uttar+Pradesh+224129/@26.4545191,82.7670371,20.5z/data=!4m16!1m7!3m6!1s0x3990e52ab12f4f43:0x87bdc0d951baa591!2sHangout+Caf%C3%A9!8m2!3d26.4546604!4d82.7670583!16s%2Fg%2F11s9dm2qhq!4m7!1m0!1m5!1m1!1s0x3990e52ab12f4f43:0x87bdc0d951baa591!2m2!1d82.7670527!2d26.4546439?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D">
+          Find Directions
+        </a>
+      </div>
+
+      <form class="form-card" id="enquiryForm">
+        <h3>Send an Enquiry</h3>
+
+        <label for="customer">Your Name</label>
+        <input id="customer" required placeholder="Enter your name">
+
+        <label for="mobile">Phone Number</label>
+        <input id="mobile" required type="tel" placeholder="Enter your number">
+
+        <label for="details">Your Order / Enquiry</label>
+        <textarea id="details" required placeholder="What would you like to ask?"></textarea>
+
+        <button type="submit" class="send-btn">
+          <i class="fa-brands fa-whatsapp"></i> Send Enquiry on WhatsApp
+        </button>
+      </form>
+    </div>
   </div>
- </div>
 </section>
 
 <footer>
- <div class="container">
-  <img src="https://www.image2url.com/r2/default/images/1795286895101-9b926e31-19e5-4102-95fd-ada0552012e8.jpeg" alt="Hangout Cafe logo">
-  <strong style="font:700 22px 'Playfair Display'">Hangout Cafe</strong>
-  <p style="margin-top:10px">Akbarpur Road, Baskhari, Ambedkar Nagar – 224129</p>
-  <p>Phone: 08187926910</p>
-  <p style="margin-top:18px">© <span id="year"></span> Hangout Cafe. All rights reserved.</p>
- </div>
+  <div class="container">
+    <img src="https://www.image2url.com/r2/default/images/1795286895101-9b926e31-19e5-4102-95fd-ada0552012e8.jpeg" alt="Hangout Cafe logo">
+    <strong style="font:700 22px 'Playfair Display'">Hangout Cafe</strong>
+    <p style="margin-top:10px">Akbarpur Road, Baskhari, Ambedkar Nagar – 224129</p>
+    <p>Phone: 08187926910</p>
+    <p style="margin-top:18px">© <span id="year"></span> Hangout Cafe. All rights reserved.</p>
+  </div>
 </footer>
 
 <button class="cart-button" id="cartButton">
- <i class="fa-solid fa-basket-shopping"></i> My Order <span id="cartCount">0</span>
+  <i class="fa-solid fa-basket-shopping"></i> My Order <span id="cartCount">0</span>
 </button>
 
 <div class="cart-panel" id="cartPanel">
- <div style="display:flex;justify-content:space-between;align-items:center">
-  <h3>Your Order</h3>
-  <button id="closeCart" style="border:0;background:none;color:white;font-size:22px;cursor:pointer">×</button>
- </div>
- <div id="cartItems"></div>
- <div class="cart-total" id="cartTotal">Total: ₹0</div>
- <button class="send-btn" id="sendOrder">Order on WhatsApp</button>
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <h3>Your Order</h3>
+    <button id="closeCart" style="border:0;background:none;color:white;font-size:22px;cursor:pointer">×</button>
+  </div>
+
+  <div id="cartItems"></div>
+  <div class="cart-total" id="cartTotal">Total: ₹0</div>
+
+  <a
+    class="checkout-link"
+    id="sendOrder"
+    href="https://hungrykart.in/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Continue to HungryKart <i class="fa-solid fa-arrow-up-right-from-square"></i>
+  </a>
+
+  <p style="font-size:12px;color:#bbb;margin-top:10px">
+    Your cart items are not automatically transferred to HungryKart. Select them again on HungryKart to place your order.
+  </p>
 </div>
 
 <script>
 const menu = [
-["Dosa","Paper Dosa",50],
-["Dosa","Masala Dosa",60],
-["Dosa","Onion Dosa",70],
-["Dosa","Jini Dosa",75],
-["Dosa","Special Dosa",80],
-["Dosa","Onion Masala Dosa",85],
-["Dosa","Butter Masala Dosa",90],
-["Dosa","Paneer Dosa",100],
-["Dosa","Butter Paneer Dosa",120],
+  ["Dosa","Paper Dosa",50],
+  ["Dosa","Masala Dosa",60],
+  ["Dosa","Onion Dosa",70],
+  ["Dosa","Jini Dosa",75],
+  ["Dosa","Special Dosa",80],
+  ["Dosa","Onion Masala Dosa",85],
+  ["Dosa","Butter Masala Dosa",90],
+  ["Dosa","Paneer Dosa",100],
+  ["Dosa","Butter Paneer Dosa",120],
 
-["Burger","Veg Burger",30],
-["Burger","Paneer Burger",40],
-["Burger","Cheese Burger",45],
-["Burger","Hangout Special Burger",55],
+  ["Burger","Veg Burger",30],
+  ["Burger","Paneer Burger",40],
+  ["Burger","Cheese Burger",45],
+  ["Burger","Hangout Special Burger",55],
 
-["Chowmein","Veg Chowmein Half",45],
-["Chowmein","Veg Chowmein Full",80],
-["Chowmein","Paneer Chowmein Half",55],
-["Chowmein","Paneer Chowmein Full",100],
+  ["Chowmein","Veg Chowmein Half",45],
+  ["Chowmein","Veg Chowmein Full",80],
+  ["Chowmein","Paneer Chowmein Half",55],
+  ["Chowmein","Paneer Chowmein Full",100],
 
-["Fry Rice","Veg Rice Half",40],
-["Fry Rice","Veg Rice Full",80],
-["Fry Rice","Paneer Rice Half",50],
-["Fry Rice","Paneer Rice Full",100],
-["Fry Rice","Manchurian Rice Half",50],
-["Fry Rice","Manchurian Rice Full",100],
+  ["Fry Rice","Veg Rice Half",40],
+  ["Fry Rice","Veg Rice Full",80],
+  ["Fry Rice","Paneer Rice Half",50],
+  ["Fry Rice","Paneer Rice Full",100],
+  ["Fry Rice","Manchurian Rice Half",50],
+  ["Fry Rice","Manchurian Rice Full",100],
 
-["Sandwich","Aloo Sandwich",25],
-["Sandwich","Cheese Sandwich",30],
-["Sandwich","Special Sandwich",35],
+  ["Sandwich","Aloo Sandwich",25],
+  ["Sandwich","Cheese Sandwich",30],
+  ["Sandwich","Special Sandwich",35],
 
-["Breakfast","Bread Makkhan",20],
-["Breakfast","Band Makkhan",20],
-["Breakfast","Mixed Sprouts",20],
-["Breakfast","Roasted Bread with Jam",30],
+  ["Breakfast","Bread Makkhan",20],
+  ["Breakfast","Band Makkhan",20],
+  ["Breakfast","Mixed Sprouts",20],
+  ["Breakfast","Roasted Bread with Jam",30],
 
-["Other","Paneer Chilli Half",70],
-["Other","Paneer Chilli Full",140],
-["Other","Mushroom Chilli Half",80],
-["Other","Mushroom Chilli Full",150],
-["Other","Veg Manchurian Half",40],
-["Other","Veg Manchurian Full",80],
-["Other","Paneer Pakoda Half",50],
-["Other","Paneer Pakoda Full",100],
-["Other","Pav Bhaji",50],
-["Other","Dahi Bada",35],
-["Other","Tikiya",25],
-["Other","Coffee",20],
-["Other","Butter Coffee",25],
-["Other","Tea",10],
-["Other","Lassi",50],
+  ["Other","Paneer Chilli Half",70],
+  ["Other","Paneer Chilli Full",140],
+  ["Other","Mushroom Chilli Half",80],
+  ["Other","Mushroom Chilli Full",150],
+  ["Other","Veg Manchurian Half",40],
+  ["Other","Veg Manchurian Full",80],
+  ["Other","Paneer Pakoda Half",50],
+  ["Other","Paneer Pakoda Full",100],
+  ["Other","Pav Bhaji",50],
+  ["Other","Dahi Bada",35],
+  ["Other","Tikiya",25],
+  ["Other","Coffee",20],
+  ["Other","Butter Coffee",25],
+  ["Other","Tea",10],
+  ["Other","Lassi",50],
 
-["Pizza","Margherita Regular",80],
-["Pizza","Margherita Medium",140],
-["Pizza","Margherita Large",180],
-["Pizza","Pizza Choice Regular",90],
-["Pizza","Pizza Choice Medium",160],
-["Pizza","Pizza Choice Large",210],
-["Pizza","Corn Pizza Regular",100],
-["Pizza","Corn Pizza Medium",180],
-["Pizza","Corn Pizza Large",235],
-["Pizza","Mix Veg Regular",110],
-["Pizza","Mix Veg Medium",200],
-["Pizza","Mix Veg Large",255],
-["Pizza","Spicy Veg Regular",120],
-["Pizza","Spicy Veg Medium",220],
-["Pizza","Spicy Veg Large",280],
-["Pizza","Mexican Green Wave Regular",130],
-["Pizza","Mexican Green Wave Medium",235],
-["Pizza","Mexican Green Wave Large",305],
-["Pizza","Paneer Pyaza Regular",140],
-["Pizza","Paneer Pyaza Medium",255],
-["Pizza","Paneer Pyaza Large",325],
-["Pizza","Exotic Veg Regular",140],
-["Pizza","Exotic Veg Medium",255],
-["Pizza","Exotic Veg Large",325],
-["Pizza","Paneer Makhani Regular",145],
-["Pizza","Paneer Makhani Medium",265],
-["Pizza","Paneer Makhani Large",340],
-["Pizza","Hangout Special Regular",150],
-["Pizza","Hangout Special Medium",275],
-["Pizza","Hangout Special Large",350],
-["Pizza","Hangout Deluxe Regular",200],
-["Pizza","Hangout Deluxe Medium",350],
-["Pizza","Hangout Deluxe Large",450],
+  ["Pizza","Margherita Regular",80],
+  ["Pizza","Margherita Medium",140],
+  ["Pizza","Margherita Large",180],
+  ["Pizza","Pizza Choice Regular",90],
+  ["Pizza","Pizza Choice Medium",160],
+  ["Pizza","Pizza Choice Large",210],
+  ["Pizza","Corn Pizza Regular",100],
+  ["Pizza","Corn Pizza Medium",180],
+  ["Pizza","Corn Pizza Large",235],
+  ["Pizza","Mix Veg Regular",110],
+  ["Pizza","Mix Veg Medium",200],
+  ["Pizza","Mix Veg Large",255],
+  ["Pizza","Spicy Veg Regular",120],
+  ["Pizza","Spicy Veg Medium",220],
+  ["Pizza","Spicy Veg Large",280],
+  ["Pizza","Mexican Green Wave Regular",130],
+  ["Pizza","Mexican Green Wave Medium",235],
+  ["Pizza","Mexican Green Wave Large",305],
+  ["Pizza","Paneer Pyaza Regular",140],
+  ["Pizza","Paneer Pyaza Medium",255],
+  ["Pizza","Paneer Pyaza Large",325],
+  ["Pizza","Exotic Veg Regular",140],
+  ["Pizza","Exotic Veg Medium",255],
+  ["Pizza","Exotic Veg Large",325],
+  ["Pizza","Paneer Makhani Regular",145],
+  ["Pizza","Paneer Makhani Medium",265],
+  ["Pizza","Paneer Makhani Large",340],
+  ["Pizza","Hangout Special Regular",150],
+  ["Pizza","Hangout Special Medium",275],
+  ["Pizza","Hangout Special Large",350],
+  ["Pizza","Hangout Deluxe Regular",200],
+  ["Pizza","Hangout Deluxe Medium",350],
+  ["Pizza","Hangout Deluxe Large",450],
 
-["Shake","Banana Shake Half",50],
-["Shake","Banana Shake Full",70],
-["Shake","Butterscotch Shake Half",50],
-["Shake","Butterscotch Shake Full",70],
-["Shake","Strawberry Shake Half",50],
-["Shake","Strawberry Shake Full",70],
-["Shake","Black Current Shake Half",50],
-["Shake","Black Current Shake Full",70],
-["Shake","Cold Coffee Half",50],
-["Shake","Cold Coffee Full",70],
-["Shake","Vanilla Shake Half",50],
-["Shake","Vanilla Shake Full",70],
-["Shake","Hangout Special Shake Half",70],
-["Shake","Hangout Special Shake Full",100],
+  ["Shake","Banana Shake Half",50],
+  ["Shake","Banana Shake Full",70],
+  ["Shake","Butterscotch Shake Half",50],
+  ["Shake","Butterscotch Shake Full",70],
+  ["Shake","Strawberry Shake Half",50],
+  ["Shake","Strawberry Shake Full",70],
+  ["Shake","Black Current Shake Half",50],
+  ["Shake","Black Current Shake Full",70],
+  ["Shake","Cold Coffee Half",50],
+  ["Shake","Cold Coffee Full",70],
+  ["Shake","Vanilla Shake Half",50],
+  ["Shake","Vanilla Shake Full",70],
+  ["Shake","Hangout Special Shake Half",70],
+  ["Shake","Hangout Special Shake Full",100],
 
-["Pastry","Red Velvet Pastry",45],
-["Pastry","Pineapple Pastry",25],
-["Pastry","Butterscotch Pastry",25],
-["Pastry","Chocolate Pastry",35],
-["Pastry","Black Forest Pastry",35],
-["Pastry","Pineapple Pudding Pastry",27],
-["Pastry","Chocolate Pudding Pastry",35],
+  ["Pastry","Red Velvet Pastry",45],
+  ["Pastry","Pineapple Pastry",25],
+  ["Pastry","Butterscotch Pastry",25],
+  ["Pastry","Chocolate Pastry",35],
+  ["Pastry","Black Forest Pastry",35],
+  ["Pastry","Pineapple Pudding Pastry",27],
+  ["Pastry","Chocolate Pudding Pastry",35],
 
-["Cake","Red Velvet Cake 500g",370],
-["Cake","Red Velvet Cake 1kg",700],
-["Cake","Chocolate Cake 500g",250],
-["Cake","Chocolate Cake 1kg",450],
-["Cake","Black Forest Cake 500g",250],
-["Cake","Black Forest Cake 1kg",450],
-["Cake","Butterscotch Cake 500g",230],
-["Cake","Butterscotch Cake 1kg",400],
-["Cake","Pineapple Cake 500g",200],
-["Cake","Pineapple Cake 1kg",375]
+  ["Cake","Red Velvet Cake 500g",370],
+  ["Cake","Red Velvet Cake 1kg",700],
+  ["Cake","Chocolate Cake 500g",250],
+  ["Cake","Chocolate Cake 1kg",450],
+  ["Cake","Black Forest Cake 500g",250],
+  ["Cake","Black Forest Cake 1kg",450],
+  ["Cake","Butterscotch Cake 500g",230],
+  ["Cake","Butterscotch Cake 1kg",400],
+  ["Cake","Pineapple Cake 500g",200],
+  ["Cake","Pineapple Cake 1kg",375]
 ];
 
-const categories=[...new Set(menu.map(item=>item[0]))];
-let selectedCategory="Dosa";
-let cart=[];
+const categories = [...new Set(menu.map(item => item[0]))];
+let selectedCategory = "Pizza";
+let cart = [];
 
-const grid=document.getElementById("menuGrid");
-const filters=document.getElementById("filters");
+const grid = document.getElementById("menuGrid");
+const filters = document.getElementById("filters");
 
-function renderFilters(){
- filters.innerHTML=categories.map(category=>
- `<button class="filter ${category===selectedCategory?'active':''}" data-category="${category}">${category}</button>`
- ).join("");
+function renderFilters() {
+  filters.innerHTML = categories.map(category =>
+    `<button class="filter ${category === selectedCategory ? "active" : ""}" data-category="${category}">${category}</button>`
+  ).join("");
 
- filters.querySelectorAll("button").forEach(button=>{
-  button.onclick=()=>{
-   selectedCategory=button.dataset.category;
-   renderFilters();
-   renderMenu();
-  };
- });
+  filters.querySelectorAll("button").forEach(button => {
+    button.onclick = () => {
+      selectedCategory = button.dataset.category;
+      renderFilters();
+      renderMenu();
+    };
+  });
 }
 
-function renderMenu(){
- const search=document.getElementById("search").value.toLowerCase();
+function renderMenu() {
+  const search = document.getElementById("search").value.toLowerCase();
 
- const results=menu.filter(item=>
-  item[0]===selectedCategory &&
-  item[1].toLowerCase().includes(search)
- );
+  const results = menu.filter(item =>
+    item[0] === selectedCategory &&
+    item[1].toLowerCase().includes(search)
+  );
 
- if(!results.length){
-  grid.innerHTML='<div class="empty">No matching food items found.</div>';
-  return;
- }
+  if (!results.length) {
+    grid.innerHTML = '<div class="empty">No matching food items found.</div>';
+    return;
+  }
 
- grid.innerHTML=results.map(item=>{
-  const index=menu.indexOf(item);
-  return `
-   <article class="menu-item">
-    <div>
-     <h3>${item[1]}</h3>
-     <small>${item[0]}</small>
-     <button class="add-btn" data-add="${index}">
-      <i class="fa-solid fa-plus"></i> Add to order
-     </button>
+  grid.innerHTML = results.map(item => {
+    const index = menu.indexOf(item);
+
+    return `
+      <article class="menu-item">
+        <div>
+          <h3>${item[1]}</h3>
+          <small>${item[0]}</small>
+          <button class="add-btn" data-add="${index}">
+            <i class="fa-solid fa-plus"></i> Add to order
+          </button>
+        </div>
+        <div class="price">₹${item[2]}</div>
+      </article>`;
+  }).join("");
+
+  grid.querySelectorAll("[data-add]").forEach(button => {
+    button.onclick = () => addToCart(Number(button.dataset.add));
+  });
+}
+
+function addToCart(index) {
+  const item = menu[index];
+  const existing = cart.find(x => x.name === item[1]);
+
+  if (existing) existing.qty++;
+  else cart.push({name:item[1],price:item[2],qty:1});
+
+  updateCart();
+  document.getElementById("cartPanel").classList.add("open");
+}
+
+function updateCart() {
+  document.getElementById("cartCount").textContent =
+    cart.reduce((sum,item) => sum + item.qty,0);
+
+  const items = document.getElementById("cartItems");
+
+  items.innerHTML = cart.length ? cart.map((item,index) => `
+    <div class="cart-row">
+      <span>${item.name}<br><small>₹${item.price} × ${item.qty}</small></span>
+      <span>
+        ₹${item.price * item.qty}
+        <button data-remove="${index}" aria-label="Remove item">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </span>
     </div>
-    <div class="price">₹${item[2]}</div>
-   </article>`;
- }).join("");
+  `).join("") : "<p style='padding:15px 0;color:#bbb'>Your order is empty.</p>";
 
- grid.querySelectorAll("[data-add]").forEach(button=>{
-  button.onclick=()=>addToCart(Number(button.dataset.add));
- });
+  items.querySelectorAll("[data-remove]").forEach(button => {
+    button.onclick = () => {
+      const index = Number(button.dataset.remove);
+      cart[index].qty--;
+      if (cart[index].qty <= 0) cart.splice(index,1);
+      updateCart();
+    };
+  });
+
+  const total = cart.reduce((sum,item) => sum + item.price * item.qty,0);
+  document.getElementById("cartTotal").textContent = "Total: ₹" + total;
 }
 
-function addToCart(index){
- const item=menu[index];
- const existing=cart.find(x=>x.name===item[1]);
-
- if(existing) existing.qty++;
- else cart.push({name:item[1],price:item[2],qty:1});
-
- updateCart();
- document.getElementById("cartPanel").classList.add("open");
-}
-
-function updateCart(){
- document.getElementById("cartCount").textContent=
- cart.reduce((sum,item)=>sum+item.qty,0);
-
- const items=document.getElementById("cartItems");
-
- items.innerHTML=cart.length?cart.map((item,index)=>`
-  <div class="cart-row">
-   <span>${item.name}<br><small>₹${item.price} × ${item.qty}</small></span>
-   <span>
-    ₹${item.price*item.qty}
-    <button data-remove="${index}" aria-label="Remove item">
-     <i class="fa-solid fa-trash"></i>
-    </button>
-   </span>
-  </div>
- `).join(""):"<p style='padding:15px 0;color:#bbb'>Your order is empty.</p>";
-
- items.querySelectorAll("[data-remove]").forEach(button=>{
-  button.onclick=()=>{
-   const index=Number(button.dataset.remove);
-   cart[index].qty--;
-   if(cart[index].qty<=0)cart.splice(index,1);
-   updateCart();
-  };
- });
-
- const total=cart.reduce((sum,item)=>sum+item.price*item.qty,0);
- document.getElementById("cartTotal").textContent="Total: ₹"+total;
-}
-
-function sendWhatsApp(message){
- const url="https://wa.me/918187926910?text="+encodeURIComponent(message);
- window.open(url,"_blank","noopener,noreferrer");
+function sendWhatsApp(message) {
+  const url = "https://wa.me/918187926910?text=" + encodeURIComponent(message);
+  window.open(url,"_blank","noopener,noreferrer");
 }
 
 document.getElementById("search").addEventListener("input",renderMenu);
 
-document.getElementById("cartButton").onclick=()=>{
- document.getElementById("cartPanel").classList.toggle("open");
+document.getElementById("cartButton").onclick = () => {
+  document.getElementById("cartPanel").classList.toggle("open");
 };
 
-document.getElementById("closeCart").onclick=()=>{
- document.getElementById("cartPanel").classList.remove("open");
+document.getElementById("closeCart").onclick = () => {
+  document.getElementById("cartPanel").classList.remove("open");
 };
 
-document.getElementById("sendOrder").onclick=()=>{
- if(!cart.length){
-  alert("Please add items to your order first.");
-  return;
- }
+document.getElementById("enquiryForm").addEventListener("submit",event => {
+  event.preventDefault();
 
- const total=cart.reduce((sum,item)=>sum+item.price*item.qty,0);
+  const name = document.getElementById("customer").value.trim();
+  const phone = document.getElementById("mobile").value.trim();
+  const details = document.getElementById("details").value.trim();
 
- const message=
- "Hello Hangout Cafe! I would like to place an order:\n\n"+
- cart.map(item=>`${item.name} x ${item.qty} = ₹${item.price*item.qty}`).join("\n")+
- "\n\nTotal: ₹"+total+
- "\nPlease confirm availability. Thank you!";
-
- sendWhatsApp(message);
-};
-
-document.getElementById("enquiryForm").addEventListener("submit",event=>{
- event.preventDefault();
-
- const name=document.getElementById("customer").value.trim();
- const phone=document.getElementById("mobile").value.trim();
- const details=document.getElementById("details").value.trim();
-
- sendWhatsApp(
-  `Hello Hangout Cafe!\nName: ${name}\nPhone: ${phone}\nOrder / Enquiry: ${details}`
- );
+  sendWhatsApp(
+    `Hello Hangout Cafe!\nName: ${name}\nPhone: ${phone}\nOrder / Enquiry: ${details}`
+  );
 });
 
-document.getElementById("navToggle").onclick=()=>{
- document.getElementById("navLinks").classList.toggle("show");
+document.getElementById("navToggle").onclick = () => {
+  document.getElementById("navLinks").classList.toggle("show");
 };
 
-document.querySelectorAll("#navLinks a").forEach(link=>{
- link.addEventListener("click",()=>{
-  document.getElementById("navLinks").classList.remove("show");
- });
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click",() => {
+    document.getElementById("navLinks").classList.remove("show");
+  });
 });
 
-document.getElementById("year").textContent=new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
 renderFilters();
 renderMenu();
